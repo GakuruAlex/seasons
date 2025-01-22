@@ -1,5 +1,5 @@
 import pytest
-from seasons import days_to_minutes, seasons
+from seasons import days_to_minutes, seasons, get_date
 
 
 @pytest.mark.parametrize("date_of_birth, current_date, days_old", [ 
@@ -19,14 +19,37 @@ def test_seasons(date_of_birth, current_date, days_old):
 
 
 @pytest.mark.parametrize("days, minutes_in_words", [
-    (9464, 'nine thousand, four hundred sixty-four minutes'),
-    (20109, 'twenty thousand, one hundred nine minutes'),
-    (1462, 'one thousand, four hundred sixty-two minutes'),
-    (6171, 'six thousand, one hundred seventy-one minutes'),
-    (6172, 'six thousand, one hundred seventy-two minutes'),
-    (1, 'one minute'),
-    (10957, 'ten thousand, nine hundred fifty-seven minutes')
+    (9464, 'thirteen million, six hundred twenty-eight thousand, one hundred sixty minutes'),
+    (20109, 'twenty-eight million, nine hundred fifty-six thousand, nine hundred sixty minutes'),
+    (1462, 'two million, one hundred five thousand, two hundred eighty minutes'),
+    (6171, 'eight million, eight hundred eighty-six thousand, two hundred forty minutes'),
+    (6172, 'eight million, eight hundred eighty-seven thousand, six hundred eighty minutes'),
+    (1, 'one thousand, four hundred forty minutes'),
+    (10957, 'fifteen million, seven hundred seventy-eight thousand eighty minutes')
 ])
 
 def test_days_to_minutes(days, minutes_in_words):
     assert days_to_minutes(days=days) == minutes_in_words
+
+
+@pytest.mark.parametrize("user_input, date_of_birth",[
+    ('I was born in 2005-11-30', '2005-11-30'),
+    ('1999-12-31', '1999-12-31'),
+    ('2008-02-29 2010-01-24', '2008-02-29')
+])
+def test_get_date_of_birth(user_input, date_of_birth):
+    assert get_date(user_input) == date_of_birth
+
+def test_get_date_with_invalid_date():
+    with pytest.raises(ValueError):
+        get_date('19999-01-23')
+    with pytest.raises(ValueError):
+        get_date('2005/01/24')
+    with pytest.raises(ValueError):
+        get_date('24/01/2000')
+    with pytest.raises(ValueError):
+        get_date("January, 1 2000")
+    with pytest.raises(ValueError):
+        get_date('1999/01/24')
+    with pytest.raises(ValueError):
+        get_date('2001-02-30')
