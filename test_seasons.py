@@ -39,3 +39,17 @@ def test_days_to_minutes(days, minutes_in_words):
 ])
 def test_get_date_of_birth(user_input, date_of_birth):
     assert get_date(user_input) == date_of_birth
+
+def test_get_date_with_invalid_date():
+    with pytest.raises(ValueError):
+        get_date('19999-01-23')
+    with pytest.raises(ValueError):
+        get_date('2005/01/24')
+    with pytest.raises(ValueError):
+        get_date('24/01/2000')
+    with pytest.raises(ValueError):
+        get_date("January, 1 2000")
+    with pytest.raises(ValueError):
+        get_date('1999/01/24')
+    with pytest.raises(ValueError):
+        get_date('2001-02-30')
