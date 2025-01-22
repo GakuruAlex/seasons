@@ -10,7 +10,7 @@ def get_date(date_of_birth: str)-> str:
     pattern = r'\b(?P<date_of_birth>([0-9]{4}-(?:[0][13578]|10|12)-(?:[0][1-9]|[1-2][0-9]|[3][0-1]))|([0-9]{4}-02-(?:[0][0-9]|[1-2][0-9]))|([0-9]{4}-(?:[469]|11)-(?:[0][01-9]|[1-2][0-9]|[3][0-1])))\b'
 
     if (date := search(pattern=pattern, string=date_of_birth, flags=IGNORECASE)):
-        return date
+        return date.group('date_of_birth')
     raise ValueError
 
 
