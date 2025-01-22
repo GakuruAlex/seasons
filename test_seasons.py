@@ -1,5 +1,5 @@
 import pytest
-from seasons import days_to_minutes, seasons
+from seasons import days_to_minutes, seasons, get_date
 
 
 @pytest.mark.parametrize("date_of_birth, current_date, days_old", [ 
@@ -30,3 +30,12 @@ def test_seasons(date_of_birth, current_date, days_old):
 
 def test_days_to_minutes(days, minutes_in_words):
     assert days_to_minutes(days=days) == minutes_in_words
+
+
+@pytest.mark.parametrize("user_input, date_of_birth",[
+    ('I was born in 2005-11-30', '2005-11-30'),
+    ('1999-12-31', '1999-12-31'),
+    ('2008-02-29 2010-01-24', '2008-02-29')
+])
+def test_get_date_of_birth(user_input, date_of_birth):
+    assert get_date(user_input) == date_of_birth
