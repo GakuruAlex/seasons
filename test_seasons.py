@@ -19,13 +19,13 @@ def test_seasons(date_of_birth, current_date, days_old):
 
 
 @pytest.mark.parametrize("days, minutes_in_words", [
-    (9464, 'nine thousand, four hundred sixty-four minutes'),
-    (20109, 'twenty thousand, one hundred nine minutes'),
-    (1462, 'one thousand, four hundred sixty-two minutes'),
-    (6171, 'six thousand, one hundred seventy-one minutes'),
-    (6172, 'six thousand, one hundred seventy-two minutes'),
-    (1, 'one minute'),
-    (10957, 'ten thousand, nine hundred fifty-seven minutes')
+    (9464, 'thirteen million, six hundred twenty-eight thousand, one hundred sixty minutes'),
+    (20109, 'twenty-eight million, nine hundred fifty-six thousand, nine hundred sixty minutes'),
+    (1462, 'two million, one hundred five thousand, two hundred eighty minutes'),
+    (6171, 'eight million, eight hundred eighty-six thousand, two hundred forty minutes'),
+    (6172, 'eight million, eight hundred eighty-seven thousand, six hundred eighty minutes'),
+    (1, 'one thousand, four hundred forty minutes'),
+    (10957, 'fifteen million, seven hundred seventy-eight thousand eighty minutes')
 ])
 
 def test_days_to_minutes(days, minutes_in_words):
