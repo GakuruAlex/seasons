@@ -8,12 +8,12 @@ words = inflect.engine()
 def seasons(date_of_birth: str, current_date: str)-> int:
     date_of_birth = date.fromisoformat(date_of_birth)
     current_date = date.fromisoformat(current_date)
-    
+
     days_old = current_date - date_of_birth
     return days_old.days
-    
+
 def days_to_minutes(days: int)-> str:
-    
+
     minutes = days * 1440
 
     return words.number_to_words(minutes, andword="") + " "+ words.plural('minute', minutes)
@@ -30,16 +30,17 @@ def get_date(date_of_birth: str)-> str|ValueError:
 def main()->None:
     #d_o_b = "Hello, I was born in 1999/02/28"
     current_date = date.today()
-    birth_day = input("Date of Birth: ")
-    
+    current_date = date.isoformat(current_date)
     try:
-        date_of_birth = get_date(birth_day)
-    
+        date_of_birth = get_date(input("Date of Birth: "))
+
     except ValueError:
         exit("Invalid date")
     else:
-        pass
-        # seasons(date_of_birth = date_of_birth, current_date=current_date)
+
+        days_old: int= seasons(date_of_birth = date_of_birth, current_date=current_date)
+        minutes_old: str = days_to_minutes(days=days_old)
+        print(minutes_old)
 
 
 if __name__ == "__main__":
