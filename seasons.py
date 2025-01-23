@@ -76,7 +76,7 @@ def main()->None:
 
         days_old: int= seasons(date_of_birth = date_of_birth, current_date=current_date)
         minutes_old: str = days_to_minutes(days=days_old)
-        print(minutes_old)
+        print(minutes_old.capitalize())
 
 
 if __name__ == "__main__":
