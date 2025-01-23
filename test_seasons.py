@@ -36,7 +36,12 @@ def test_days_to_minutes(days, minutes_in_words):
 @pytest.mark.parametrize("user_input, date_of_birth",[
     ('I was born in 2005-11-30', '2005-11-30'),
     ('1999-12-31', '1999-12-31'),
-    ('2008-02-29 2010-01-24', '2008-02-29')
+    ('2008-02-29 2010-01-24', '2008-02-29'),
+    ('1998-12-31', '1998-12-31'),
+    ('2000-11-30', '2000-11-30'),
+    ('2001-10-31', '2001-10-31'),
+    ('2002-04-28', '2002-04-28'),
+    ('2004-02-28', '2004-02-28')
 ])
 def test_get_date_of_birth(user_input, date_of_birth):
     assert get_date(user_input) == date_of_birth
